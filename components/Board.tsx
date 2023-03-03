@@ -131,6 +131,13 @@ function Cell({
       }}
       onTouchStart={onMouseDown}
       onMouseDown={onMouseDown}
+      onContextMenu={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onAlternateClick?.();
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }}
     >
       {hasFlag ? (
         <div style={{ color: "red", fontSize: 18, userSelect: "none" }}>
